@@ -126,14 +126,14 @@ services:
 
   # Judge0
   server:
-      image: judge0/judge0:1.13.0
-      volumes:
-        - ./judge0.conf:/judge0.conf:ro
-      ports:
-        - "2358:2358"
-      privileged: true
-      <<: *default-logging
-      restart: always
+    image: judge0/judge0:1.13.0
+    volumes:
+      - ./judge0.conf:/judge0.conf:ro
+    ports:
+      - "2358:2358"
+    privileged: true
+    <<: *default-logging
+    restart: always
 
   workers:
     image: judge0/judge0:1.13.0
@@ -163,7 +163,7 @@ services:
       - redis-data:/data
     <<: *default-logging
     restart: always
-    
+
 volumes: 
   question-service:
   coding-service:
@@ -172,7 +172,6 @@ volumes:
   history-service:
   frontend:
   gateway:
-  history:
   postgres-data:
   redis-data:
 

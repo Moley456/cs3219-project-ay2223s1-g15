@@ -11,6 +11,12 @@ x-common-variables:
   QUESTION_URL: http://question:8004
   HISTORY_URL: http://history:8005
 
+x-logging: &default-logging
+  logging:
+    driver: json-file
+    options:
+      max-size: 100m
+
 services:
   gateway:
     container_name: gateway
@@ -114,14 +120,14 @@ services:
 
   # Judge0
   server:
-      image: judge0/judge0:1.13.0
-      volumes:
-        - ./judge0.conf:/judge0.conf:ro
-      ports:
-        - "2358:2358"
-      privileged: true
-      <<: *default-logging
-      restart: always
+    image: judge0/judge0:1.13.0
+    volumes:
+      - ./judge0.conf:/judge0.conf:ro
+    ports:
+      - "2358:2358"
+    privileged: true
+    <<: *default-logging
+    restart: always
 
   workers:
     image: judge0/judge0:1.13.0
@@ -159,7 +165,6 @@ volumes:
   history-service:
   frontend:
   gateway:
-  history:
   postgres-data:
   redis-data:
 
